@@ -24,7 +24,7 @@ save -f
 ---------------------------
 
 modify parameter-group system
-set name "BO-324-DO43-S1"
+set name "Aman"
 save -f
 
 ---------------------------------------------------------------
@@ -510,7 +510,7 @@ exit
 
 ---
 -----------------------------------------------------------
-## Creating Management VLAN 10 (L3) with IP 10.0.193.254 ##
+## Creating Management VLAN 10 (L3) with IP 10.0.193.126 ##
 -----------------------------------------------------------
 
 configure
@@ -523,13 +523,13 @@ set integrated-vlan vlan tag 10
 set integrated-vlan mtu 1500
 set ip router system
 set ip ipv4 enable yes
-set ip ipv4 address 10.0.193.254/25
+set ip ipv4 address 10.0.193.126/25
 save -f
 exit
 
 ---
 ------------------------------------------------------------
-## Configuring Default Route with gateway IP 10.0.193.129 ##
+## Configuring Default Route with gateway IP 10.0.193.1 ##
 ------------------------------------------------------------
 
 configure
@@ -537,7 +537,7 @@ create parameter-group ip-route default
 set enable yes
 set router "system"
 set destination 0.0.0.0/0
-set next-hop gateway 10.0.193.129
+set next-hop gateway 10.0.193.1
 save -f
 exit
 
