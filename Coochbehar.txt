@@ -16,7 +16,7 @@ save -f
 ---------------------------
 
 modify parameter-group system
-set name "BO-455-D045-S2"
+set name "BO-455-D045-S1"
 save -f
 
 ---------------------------------------------------------------
@@ -413,7 +413,7 @@ set integrated-vlan vlan tag 10
 set integrated-vlan mtu 1500
 set ip router system
 set ip ipv4 enable yes
-set ip ipv4 address 10.97.2.253/25
+set ip ipv4 address 10.97.2.254/25
 save -f
 exit
 
