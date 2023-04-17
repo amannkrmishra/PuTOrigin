@@ -398,14 +398,6 @@ set ethernet mtu value 1500
 set bridging enable yes
 set bridging bridge system
 save -f
-set name ge24-trunk-vlan-3
-set ethernet vlan enable yes
-set ethernet vlan tag 3
-save -f
-set name ge24-trunk-vlan-2
-set ethernet vlan enable yes
-set ethernet vlan tag 2
-save -f
 exit
 
 ---
