@@ -24,7 +24,7 @@ save -f
 ---------------------------
 
 modify parameter-group system
-set name "BO-52D-D052-S1"
+set name "BO-52D-D052-S3"
 save -f
 
 ---------------------------------------------------------------
@@ -522,7 +522,7 @@ set integrated-vlan vlan tag 10
 set integrated-vlan mtu 1500
 set ip router system
 set ip ipv4 enable yes
-set ip ipv4 address 10.112.128.126/25
+set ip ipv4 address 10.112.128.124/25
 save -f
 exit
 
