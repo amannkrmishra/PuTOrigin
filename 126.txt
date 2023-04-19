@@ -1,0 +1,180 @@
+----------------------------------------------------------------------------------------------
+## Enabling Gigabit Ethernet Physical Ports (port-1 to port-24) and making them access ports ##
+----------------------------------------------------------------------------------------------
+
+configure
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-1 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-2 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-3 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-4 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+exit
+
+---
+--------------------------------------------------------------------------
+## Creating VLAN 10 interfaces on respective 1G access ports  ##
+--------------------------------------------------------------------------
+
+configure
+create parameter-group interface ge01-access-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-1
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+
+---
+
+set name ge02-access-vlan-10
+set base port-address location port port-id port-2
+save -f
+
+set name ge03-access-vlan-10
+set base port-address location port port-id port-3
+save -f
+
+set name ge04-access-vlan-10
+set base port-address location port port-id port-4
+save -f
+
+configure
+create parameter-group interface ge23-trunk-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-23
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge23-trunk-vlan-305
+set ethernet vlan enable yes
+set ethernet vlan tag 305
+save -f
+set name ge23-trunk-vlan-300
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+save -f
+exit
+
+---
+
+configure
+create parameter-group interface ge24-trunk-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-24
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge24-trunk-vlan-305
+set ethernet vlan enable yes
+set ethernet vlan tag 305
+save -f
+set name ge24-trunk-vlan-300
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+save -f
+exit
+
+---
+-----------------------------------------------------------
+## Creating Management VLAN 10 (L3) with IP 10.112.128.126 ##
+-----------------------------------------------------------
+
+configure
+create parameter-group interface management_vlan10
+set enable yes
+set base virtual-port-address type integrated-vlan
+set integrated-vlan bridge system
+set integrated-vlan vlan enable yes
+set integrated-vlan vlan tag 10
+set integrated-vlan mtu 1500
+set ip router system
+set ip ipv4 enable yes
+set ip ipv4 address 10.112.128.126/25
+save -f
+exit
+
+---
+------------------------------------------------------------
+## Configuring Default Route with gateway IP 10.112.128.1 ##
+------------------------------------------------------------
+
+configure
+create parameter-group ip-route default
+set enable yes
+set router "system"
+set destination 0.0.0.0/0
+set next-hop gateway 10.112.128.1
+save -f
+exit
+
+---
