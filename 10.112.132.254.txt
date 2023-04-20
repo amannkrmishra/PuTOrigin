@@ -1,0 +1,692 @@
+----------------------------------------------------------
+## All configurations to be done in configure mode only ##
+----------------------------------------------------------
+
+configure
+Create parameter-group bridge-vlan 10
+set enable yes
+save -f
+
+modify parameter-group bridge system
+set address-spoof-check disable
+save -f
+
+---------------------------
+## Setting Hostname ##
+---------------------------
+
+modify parameter-group system
+set name "BO-5001-D052-S1"
+save -f
+
+---------------------------------------------------------------
+## LLDP configurations to be done in configure mode only ##
+---------------------------------------------------------------
+
+modify parameter-group system
+set lldp enable yes
+save -f
+create parameter-group lldp-policy test
+set management-address enable yes
+set management-address router system
+set tlv-filter enable yes
+add tlv-filter tlv-list system-name
+add tlv-filter tlv-list system-capabilities
+add tlv-filter tlv-list system-description
+add tlv-filter tlv-list port-description
+add tlv-filter tlv-list management-address
+add tlv-filter tlv-list mac-phy-configuration-status
+add tlv-filter tlv-list maximum-frame-size
+save -f
+
+-------------------------
+## User-Creation ##
+-------------------------
+
+create parameter-group cli-user
+set user-id "admin"
+set password "Admin@123456"
+set name localuser
+set group-id admin
+set cli idle-session-timeout default minutes 30
+set cli maximum-sessions 5
+set password-expiry enable no
+save -f
+
+modify parameter-group cli-user admin
+set cli configure-mode-prompt "%S# "
+set cli operational-mode-prompt "%S> "
+set cli diagnose-mode-prompt "%S_diagnose> "
+save -f
+exit
+
+---
+----------------------------------------------------------------------------------------------
+## Enabling Gigabit Ethernet Physical Ports (port-1 to port-24) and making them access ports ##
+----------------------------------------------------------------------------------------------
+
+configure
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-1 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-2 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-3 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-4 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+---
+---
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-5 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-6 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-7 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-8 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+---
+---
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-9 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-10 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-11 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-12 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+---
+---
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-13 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-14 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-15 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-16 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+---
+---
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-17 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-18 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-19 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-20 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+---
+---
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-21 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-22 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+exit
+
+---
+--------------------------------------------------------------------------
+## Creating VLAN 10 interfaces on respective 1G access ports  ##
+--------------------------------------------------------------------------
+
+configure
+create parameter-group interface ge01-access-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-1
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+
+---
+
+set name ge02-access-vlan-10
+set base port-address location port port-id port-2
+save -f
+set name ge03-access-vlan-10
+set base port-address location port port-id port-3
+save -f
+set name ge04-access-vlan-10
+set base port-address location port port-id port-4
+save -f
+set name ge05-access-vlan-10
+set base port-address location port port-id port-5
+save -f
+set name ge06-access-vlan-10
+set base port-address location port port-id port-6
+save -f
+
+---
+
+set name ge07-access-vlan-10
+set base port-address location port port-id port-7
+save -f
+set name ge08-access-vlan-10
+set base port-address location port port-id port-8
+save -f
+set name ge09-access-vlan-10
+set base port-address location port port-id port-9
+save -f
+set name ge10-access-vlan-10
+set base port-address location port port-id port-10
+save -f
+set name ge11-access-vlan-10
+set base port-address location port port-id port-11
+save -f
+
+---
+
+set name ge12-access-vlan-10
+set base port-address location port port-id port-12
+save -f
+set name ge13-access-vlan-10
+set base port-address location port port-id port-13
+save -f
+set name ge14-access-vlan-10
+set base port-address location port port-id port-14
+save -f
+set name ge15-access-vlan-10
+set base port-address location port port-id port-15
+save -f
+set name ge16-access-vlan-10
+set base port-address location port port-id port-16
+save -f
+
+---
+
+set name ge17-access-vlan-10
+set base port-address location port port-id port-17
+save -f
+set name ge18-access-vlan-10
+set base port-address location port port-id port-18
+save -f
+set name ge19-access-vlan-10
+set base port-address location port port-id port-19
+save -f
+set name ge20-access-vlan-10
+set base port-address location port port-id port-20
+save -f
+
+---
+
+set name ge21-access-vlan-10
+set base port-address location port port-id port-21
+save -f
+set name ge22-access-vlan-10
+set base port-address location port port-id port-22
+save -f
+exit
+
+---
+
+configure
+create parameter-group interface ge23-trunk-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-23
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge23-trunk-vlan-305
+set ethernet vlan enable yes
+set ethernet vlan tag 305
+save -f
+set name ge23-trunk-vlan-300
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+save -f
+exit
+
+---
+
+configure
+create parameter-group interface ge24-trunk-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-24
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge24-trunk-vlan-305
+set ethernet vlan enable yes
+set ethernet vlan tag 305
+save -f
+set name ge24-trunk-vlan-300
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+save -f
+exit
+
+---
+-----------------------------------------------------------
+## Creating Management VLAN 10 (L3) with IP 10.112.132.254 ##
+-----------------------------------------------------------
+
+configure
+create parameter-group interface management_vlan10
+set enable yes
+set base virtual-port-address type integrated-vlan
+set integrated-vlan bridge system
+set integrated-vlan vlan enable yes
+set integrated-vlan vlan tag 10
+set integrated-vlan mtu 1500
+set ip router system
+set ip ipv4 enable yes
+set ip ipv4 address 10.112.132.254/25
+save -f
+exit
+
+---
+------------------------------------------------------------
+## Configuring Default Route with gateway IP 10.112.132.129 ##
+------------------------------------------------------------
+
+configure
+create parameter-group ip-route default
+set enable yes
+set router "system"
+set destination 0.0.0.0/0
+set next-hop gateway 10.112.132.129
+save -f
+exit
+
+---
+------------------------------------------------------
+## Configuring SNMP V2 ##
+------------------------------------------------------
+
+configure
+create parameter-group snmp-community "lic"
+set enable yes
+set password "licnoc RO"
+default context
+save -f
+modify parameter-group snmp-notification
+set enable yes
+add server s1
+enter server s1
+set enable yes
+set address router system
+set address host 10.240.17.10
+set message-model type v2c
+set message-model v2c community-string "licnoc RO"
+leave
+add server s2
+enter server s2
+set enable yes
+set address router system
+set address host 10.240.31.153
+set message-model type v2c
+set message-model v2c community-string "licnoc RO"
+save -f
+exit
+
+---
+-------------------------------------------------------------------------
+## Creating AAA Context for defining the priorities: Local vs TACACS ##
+-------------------------------------------------------------------------
+
+configure
+delete parameter-group aaa-context c1
+y
+
+create parameter-group aaa-context c1
+set enable yes
+add authentication order tacacs-plus
+add authentication order local
+enter authentication order tacacs-plus
+set server-group "LIC-ISE"
+leave
+leave
+save -f
+exit
+
+---
+------------------------------------------------------------------
+## Creating AAA Policy for defining the scopes and enable AAA  ##
+------------------------------------------------------------------
+
+configure
+delete parameter-group aaa-policy p1
+y
+
+create parameter-group aaa-policy p1
+set enable yes
+add scope authentication
+set match service management-cli
+set context "c1"
+save -f
+exit
+
+---
+-------------------------------------------------------------
+## Defining TACACS servers in tacacs-plus-server-group PG ##
+-------------------------------------------------------------
+
+configure
+delete parameter-group tacacs-plus-server-group tsg
+y
+
+create parameter-group tacacs-plus-server-group 
+set name LIC-ISE
+set enable yes
+add server primary
+enter server primary
+set address router system
+set address host 10.240.15.18
+set shared-secret "Secure@$#!"
+set authentication enable yes
+set isolate-on-failure no
+leave
+add server secondary
+enter server secondary
+set address router system
+set address host 10.156.17.66
+set shared-secret "Secure@$#!"
+set authentication enable yes
+set isolate-on-failure no
+leave
+save -f
+exit
+
+---
+----------------------------
+## NTP Configuration ##
+----------------------------
+
+configure
+create parameter-group ntp-association
+set enable yes
+add association { "system" "10.240.31.81" }
+enter association * at 1
+set enable yes
+set address router system
+set address host 10.240.31.81
+set boot-server yes
+set preferred yes
+save -f
+exit
+
+---
+------------------------------
+## For Telnet ##
+------------------------------
+
+configure
+modify parameter-group router system
+set access telnet-server enable yes
+save -f
+exit
+
+---
+------------------------------------------------------
+## Configuring SNMP V3 ##
+------------------------------------------------------
+
+configure
+modify parameter-group router system
+set access snmp enable yes
+add access snmp allowed-versions snmp-version-2c
+save -f
+create parameter-group snmp-user V3nwmsl!ic
+set enable yes
+set authentication-protocol sha
+set authentication-password !nli<>1-2
+set privacy-protocol des
+set privacy-password rety&88hw(
+set access-control-group v3grouplic
+save -f
+create parameter-group snmp-context system
+set instance system
+save -f
+
+---
+
+create parameter-group snmp-access-control-group V3grouplic
+set enable yes
+add context system
+enter context system
+set security sec-1
+leave
+save -f
+create parameter-group snmp-security-group sec-1
+add security usm
+enter security usm
+add views authentication-privacy
+enter views authentication-privacy
+set read-view ace-1
+set write-view ace-1
+leave
+leave
+save -f
+
+---
+
+create parameter-group snmp-access-control-entry ace-1
+add mib-subtree .1
+save -f
+modify parameter-group snmp-notification
+set enable yes
+add server s3
+enter server s3
+set enable yes
+set address router system
+set address host 10.240.30.75
+set message-model type v3
+set message-model v3 user-name V3nwmsl!ic
+set message-model v3 security-model authentication-privacy
+set message-model v3 authentication-protocol sha
+set message-model v3 privacy-protocol des
+set message-model v3 authentication-password !nli<>1-2
+set message-model v3 privacy-password rety&88hw(
+leave
+save -f
+exit
+
+---
+
+Troubleshooting:
+==================================
+show interface all
+----------------------------------
+show gigabit-ethernet summary
+----------------------------------
+show router details system
+----------------------------------
+show lldp port summary
+----------------------------------
+system reboot  ?
+----------------------------------
+disable cli pagination (like terminal length 0)
+----------------------------------
+show gigabit-ethernet statistics { shelf-1 { active-controller base-slot } port-1 }
+----------------------------------
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-1 }
+set enable no
+save -f
+----------------------------------
+delete parameter-group interface ge01-access-vlan-10
+----------------------------------
+delete parameter-group interface management_vlan10
+----------------------------------
+delete parameter-group ip-route default
+----------------------------------
+show route summary system
+----------------------------------
+show lldp port details { gigabit-ethernet { shelf-1 { active-controller base-slot } port-3 } }
