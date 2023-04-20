@@ -1,0 +1,7 @@
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-1 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+set default-vlan enable yes
+set default-vlan tag 10
+save -f
