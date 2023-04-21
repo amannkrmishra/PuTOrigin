@@ -26,7 +26,7 @@ exit
 ## Defining TACACS servers in tacacs-plus-server-group PG ##
 -------------------------------------------------------------
 configure
-create parameter-group tacacs-plus-server-group 
+create parameter-group tacacs-plus-server-group
 set name LIC-ISE
 set enable yes
 add server primary
