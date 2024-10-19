@@ -25,4 +25,5 @@ y
 2048
 ip ssh time-out 60
 ip ssh authentication-retries 2
+end
 do wr
