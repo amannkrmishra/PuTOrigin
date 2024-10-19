@@ -1,0 +1,28 @@
+en
+config t
+username admin privilege 15 secret $W1tch@bf#$%
+
+line vty 0 4
+login local
+exec-timeout 5 0
+transport input ssh
+transport output none
+exit
+
+
+int vlan1
+no shut
+ip add 10.198.27.12 255.255.255.0
+exit
+!
+ip default-gateway 10.198.27.1
+
+
+ip domain name bfl.com
+ip ssh version 2
+crypto key generate rsa
+y
+2048
+ip ssh time-out 60
+ip ssh authentication-retries 2
+do wr
